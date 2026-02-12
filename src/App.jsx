@@ -141,9 +141,9 @@ function App() {
         <div className="container">
           <h2 className="text-center">Você Escolhe o Formato</h2>
           <div className="grid-3" style={{marginTop: '40px'}}>
-            <div className="card text-center" style={{border: 'none'}}><Home color="#1B2B4A" size={48} style={{margin: '0 auto 20px'}} /><h3>Presencial</h3><p>Estudo no conforto de nossas salas.</p></div>
+            <div className="card text-center" style={{border: 'none'}}><Home color="#1B2B4A" size={48} style={{margin: '0 auto 20px'}} /><h3>Presencial</h3><p>Estude no conforto de nossas salas com nossos teachers altamente qualificados.</p></div>
             <div className="card text-center" style={{border: 'none'}}><Monitor color="#8B1E2F" size={48} style={{margin: '0 auto 20px'}} /><h3>Online Ao Vivo</h3><p>Interação real, onde você estiver.</p></div>
-            <div className="card text-center" style={{border: 'none'}}><RefreshCw color="#1B2B4A" size={48} style={{margin: '0 auto 20px'}} /><h3>Híbrido</h3><p>Alterne conforme sua necessidade.</p></div>
+            <div className="card text-center" style={{border: 'none'}}><RefreshCw color="#1B2B4A" size={48} style={{margin: '0 auto 20px'}} /><h3>Híbrido</h3><p>Alterne conforme sua necessidade: presencial ou online.</p></div>
           </div>
         </div>
       </section>

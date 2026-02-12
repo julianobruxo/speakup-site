@@ -32,7 +32,7 @@ function App() {
         </div>
       )}
 
-      {/* 1. HEADER - COM REDES SOCIAIS COLORIDAS */}
+      {/* 1. HEADER - REDES SOCIAIS ESTILIZADAS */}
       <header className="container" style={{ padding: '20px 1.5rem' }}>
         <nav style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <img src="/logo.png" alt="Speak UP" style={{ height: '220px', width: 'auto', objectFit: 'contain' }} />
@@ -44,23 +44,59 @@ function App() {
                 color: '#1B2B4A', 
                 fontWeight: '800', 
                 cursor: 'pointer', 
-                fontSize: '1rem', 
+                fontSize: '0.9rem', 
                 textTransform: 'uppercase', 
                 letterSpacing: '1px',
-                marginRight: '80px' 
+                marginRight: '60px' 
               }}
             >
               Quem Somos
             </span>
 
-            {/* FACEBOOK COLORIDO */}
-            <a href="https://www.facebook.com/profile.php?id=61586608800880" target="_blank" rel="noopener noreferrer" style={{ color: '#011c3e', marginRight: '15px', display: 'flex' }}>
-              <Facebook size={32} fill="#01152f" color="white" />
+            {/* BOTÃO FACEBOOK (Ícone em Círculo Azul) */}
+            <a 
+              href="https://www.facebook.com/speakupdoisirmaos" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              style={{ 
+                backgroundColor: '#102f58', 
+                width: '45px', 
+                height: '45px', 
+                borderRadius: '50%', 
+                display: 'flex', 
+                justifyContent: 'center', 
+                alignItems: 'center', 
+                color: 'white', 
+                marginRight: '15px',
+                transition: 'transform 0.2s'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
+              onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+            >
+              <Facebook size={24} fill="white" />
             </a>
 
-            {/* INSTAGRAM COLORIDO */}
-            <a href="https://www.instagram.com/speakupdoisirmaos/" target="_blank" rel="noopener noreferrer" style={{ color: '#E4405F', marginRight: '25px', display: 'flex' }}>
-              <Instagram size={32} />
+            {/* BOTÃO INSTAGRAM (Ícone em Círculo Magenta) */}
+            <a 
+              href="https://www.instagram.com/speakupdoisirmaos/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              style={{ 
+                backgroundColor: '#E4405F', 
+                width: '45px', 
+                height: '45px', 
+                borderRadius: '50%', 
+                display: 'flex', 
+                justifyContent: 'center', 
+                alignItems: 'center', 
+                color: 'white', 
+                marginRight: '25px',
+                transition: 'transform 0.2s'
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
+              onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+            >
+              <Instagram size={24} />
             </a>
 
             <button onClick={() => setIsQuizOpen(true)} className="btn btn-primary" style={{ padding: '1.2rem 2.5rem' }}>
@@ -86,7 +122,7 @@ function App() {
         <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1000&q=80" alt="Speak UP" className="hero-img" />
       </main>
 
-      {/* 3. ESTATÍSTICAS - ESTRELAS BRANCAS */}
+      {/* 3. ESTATÍSTICAS */}
       <section className="bg-navy section">
         <div className="container" style={{ display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap', gap: '40px', textAlign: 'center' }}>
           <div><h2 style={{ color: 'white', margin: '0', fontSize: '3rem' }}>+2000</h2><p style={{ color: '#F3F4F6' }}>alunos atendidos</p></div>
@@ -112,7 +148,7 @@ function App() {
             <div className="card text-center" style={{ border: 'none' }}>
               <Home color="#1B2B4A" size={60} style={{margin: '0 auto 20px'}} />
               <h3>Presencial</h3>
-              <p>Estude no conforto de nossas salas com teachers altamente qualificados.</p>
+              <p>Estude em nossas salas modernas no centro de Dois Irmãos.</p>
             </div>
             <div className="card text-center" style={{ border: 'none' }}>
               <Monitor color="#8B1E2F" size={60} style={{margin: '0 auto 20px'}} />
@@ -128,7 +164,7 @@ function App() {
         </div>
       </section>
 
-      {/* 5. NOSSO MÉTODO */}
+      {/* 5. MÉTODO */}
       <section className="section">
         <div className="container">
           <h2 className="text-center">Por trás de nossa aula</h2>
@@ -167,8 +203,8 @@ function App() {
               </thead>
               <tbody>
                 <tr style={{ borderBottom: '1px solid #F3F4F6' }}><td style={{ padding: '30px' }}>Alunos/Turma</td><td style={{ padding: '30px', fontWeight: '800' }}>Máx 8</td><td style={{ padding: '30px' }}>15 a 20</td></tr>
-                <tr style={{ borderBottom: '1px solid #F3F4F6' }}><td style={{ padding: '30px' }}>Conteúdo</td><td style={{ padding: '30px', fontWeight: '800' }}>Situações REAIS do dia-a-dia</td><td style={{ padding: '30px' }}>Gramática e Livro apenas</td></tr>
-                <tr><td style={{ padding: '30px' }}>Foco</td><td style={{ padding: '30px', fontWeight: '800' }}>Prática Real e Conversação</td><td style={{ padding: '30px' }}>Gramática, regras e nada de prática</td></tr>
+                <tr style={{ borderBottom: '1px solid #F3F4F6' }}><td style={{ padding: '30px' }}>Conteúdo</td><td style={{ padding: '30px', fontWeight: '800' }}>Personalizado</td><td style={{ padding: '30px' }}>Livro Rígido</td></tr>
+                <tr><td style={{ padding: '30px' }}>Foco</td><td style={{ padding: '30px', fontWeight: '800' }}>Conversação</td><td style={{ padding: '30px' }}>Gramática</td></tr>
               </tbody>
             </table>
           </div>
@@ -181,7 +217,7 @@ function App() {
           <h2 style={{ marginBottom: '1rem' }}>Onde Estamos</h2>
           <p style={{marginBottom: '3rem', fontSize: '1.2rem'}}>Av. 25 de Julho, Centro - Dois Irmãos/RS</p>
           <div style={{ width: '100%', height: '500px', borderRadius: '35px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3472.585507026046!2d-51.1511!3d-29.5855!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjnCsDM1JzA3LjgiUyA1McKwMDknMDMuOSJX!5e0!3m2!1spt-BR!2sbr!4v1620000000000!5m2!1spt-BR!2sbr" width="100%" height="100%" style={{ border: 0 }} loading="lazy"></iframe>
+            <iframe src="http://googleusercontent.com/maps.google.com/9" width="100%" height="100%" style={{ border: 0 }} loading="lazy"></iframe>
           </div>
         </div>
       </section>
@@ -190,9 +226,7 @@ function App() {
       <section className="bg-gray" style={{ padding: '70px 0', overflow: 'hidden' }}>
         <div className="container text-center" style={{ marginBottom: '40px' }}>
           <h2 style={{ marginBottom: '10px' }}>Empresas Parceiras</h2>
-          <p style={{ fontSize: '1.1rem', color: '#64748b', textTransform: 'uppercase', letterSpacing: '2px' }}>
-            Empresas que confiam na Speak UP
-          </p>
+          <p style={{ fontSize: '1.1rem', color: '#64748b', textTransform: 'uppercase', letterSpacing: '2px' }}>Empresas que confiam na Speak UP</p>
         </div>
         <div className="marquee-container">
           {["Grupo Herval", "GG10", "Henrich", "Getti Química", "Cobrasil", "Mahindra", "Zazmic Inc."].map((p, i) => (
@@ -208,7 +242,7 @@ function App() {
       <footer className="bg-navy section">
         <div className="container text-center">
           <h2 style={{color: 'white', marginBottom: '2rem', fontSize: '2.5rem'}}>Pronto para destravar seu inglês?</h2>
-          <a href="https://wa.me/5551999309238" className="btn btn-primary" style={{ padding: '1.5rem 4rem', fontSize: '1.2rem' }}>Tire suas dúvidas</a>
+          <a href="https://wa.me/5551999309238" className="btn btn-primary" style={{ padding: '1.5rem 4rem', fontSize: '1.2rem' }}>WhatsApp Agora</a>
           <p style={{marginTop: '5rem', color: '#64748b', fontSize: '1rem'}}>© 2026 Speak UP English School. Todos os direitos reservados.</p>
         </div>
       </footer>

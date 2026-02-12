@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { X, CheckCircle, Lock } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
-// --- BANCO DE 60 QUESTÕES (COMPLETO E ATUALIZADO) ---
+// --- BANCO DE 60 QUESTÕES (COMPLETO) ---
 const questionsData = [
   // 🟢 INTRO (A1)
   { id: 1, level: 'A1', question: "My name ___ Lucas.", options: ["am", "is", "are"], answer: "is" },
@@ -73,7 +73,6 @@ const questionsData = [
   { id: 60, level: 'B2', question: "He speaks English quite well and ______ you.", options: ["so do", "either do", "neither do"], answer: "so do" }
 ];
 
-// --- COMPONENTE PRINCIPAL ---
 const QuizModal = ({ isOpen, onClose }) => {
   const [step, setStep] = useState('intro'); // Inicia na INTRO
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -81,10 +80,8 @@ const QuizModal = ({ isOpen, onClose }) => {
   const [userData, setUserData] = useState({ name: '', phone: '' });
   const [loading, setLoading] = useState(false);
 
-  // Inicializa o EmailJS e reseta o teste
   useEffect(() => {
     if (isOpen) {
-      emailjs.init("Hry79iMrM6wfAL8ND"); // <--- CONFIRA SE SUA KEY ESTÁ AQUI
       setStep('intro');
       setCurrentQuestion(0);
       setAnswersLog([]);
@@ -95,7 +92,6 @@ const QuizModal = ({ isOpen, onClose }) => {
 
   if (!isOpen) return null;
 
-  // Lógica de resposta
   const handleAnswer = (option) => {
     const currentQ = questionsData[currentQuestion];
     const isCorrect = option === currentQ.answer;
@@ -115,10 +111,10 @@ const QuizModal = ({ isOpen, onClose }) => {
     }
   };
 
-  // Lógica de cálculo
   const calculateRobustLevel = (fullLog) => {
     let scores = { A1: 0, A2: 0, B1: 0, B2: 0 };
     fullLog.forEach(entry => { if (entry.correto === 1) scores[entry.nivel] += 1; });
+    
     const PASS_MARK = 12; 
     const PARTIAL_MARK = 9; 
     const details = `A1: ${scores.A1}/15 | A2: ${scores.A2}/15 | B1: ${scores.B1}/15 | B2: ${scores.B2}/15`;
@@ -140,7 +136,6 @@ const QuizModal = ({ isOpen, onClose }) => {
     return { level: finalLevel, stats: details };
   };
 
-  // Envio do formulário
   const handleCaptureSubmit = (e) => {
     e.preventDefault();
     if (userData.name && userData.phone) {
@@ -150,23 +145,19 @@ const QuizModal = ({ isOpen, onClose }) => {
     }
   };
 
-  // Envio do Email
-  // 4. ENVIAR EMAIL (EmailJS) - COM O RELATÓRIO CORRIGIDO
   const finishQuiz = () => {
     setLoading(true);
     const result = calculateRobustLevel(answersLog);
     const rawPhone = userData.phone.replace(/\D/g, ''); 
 
-    // --- [A PARTE QUE FALTAVA] GERA O TEXTO DE ACERTOS E ERROS ---
+    // --- CRIA O TEXTO DO RELATÓRIO ---
     const relatorioTexto = answersLog.map((item, index) => {
       const status = item.correto ? '✅' : '❌';
-      // Corta perguntas muito longas para caber no email
       const perguntaResumo = item.pergunta.length > 50 ? item.pergunta.substring(0, 50) + '...' : item.pergunta;
-      
       return `${index + 1}. [${item.nivel}] ${status} ${perguntaResumo} \n   (Sua resposta: ${item.escolha})`;
     }).join('\n\n');
 
-    // --- SEUS DADOS (Já preenchi com os que vi na sua imagem) ---
+    // --- SEUS DADOS REAIS ---
     const serviceID = "service_placementTest";
     const templateID = "template_kuvp0q4";
     const publicKey = "Hry79iMrM6wfAL8ND";
@@ -176,30 +167,7 @@ const QuizModal = ({ isOpen, onClose }) => {
       whatsapp: rawPhone,
       nivel: result.level,
       detalhes: result.stats,
-      relatorio_completo: relatorioTexto // <--- O INGREDIENTE SECRETO
-    };
-
-    emailjs.send(serviceID, templateID, templateParams, publicKey)
-      .then(() => {
-        setStep('result');
-        setLoading(false);
-      }, (err) => {
-        console.error('Erro envio:', err);
-        setStep('result'); 
-        setLoading(false);
-      });
-  }; 
-    
-    // --- SUBSTITUA PELOS SEUS DADOS ---
-    const serviceID = "service_placementTest"; 
-    const templateID = "template_kuvp0q4"; 
-    const publicKey = "Hry79iMrM6wfAL8ND"; 
-
-    const templateParams = {
-      nome: userData.name,
-      whatsapp: rawPhone,
-      nivel: result.level,
-      detalhes: result.stats
+      relatorio_completo: relatorioTexto // <--- AQUI ESTÁ O SEGREDO
     };
 
     emailjs.send(serviceID, templateID, templateParams, publicKey)
@@ -226,7 +194,7 @@ const QuizModal = ({ isOpen, onClose }) => {
           <X size={24} color="#666" />
         </button>
 
-        {/* TELA 0: INTRODUÇÃO */}
+        {/* TELA INTRO */}
         {step === 'intro' && (
           <div style={{textAlign: 'center'}}>
              <div style={{marginBottom: '20px'}}>
@@ -236,23 +204,17 @@ const QuizModal = ({ isOpen, onClose }) => {
                Bem-vindo ao Teste de Nível!
              </h2>
              <div style={{textAlign: 'left', background: '#F3F4F6', padding: '20px', borderRadius: '15px', marginBottom: '25px'}}>
-               <p style={{color: '#4b5563', marginBottom: '10px'}}>
-                 ✅ <strong>Escolha única:</strong> Todas as questões possuem apenas uma alternativa correta.
-               </p>
-               <p style={{color: '#4b5563', marginBottom: '10px'}}>
-                 ⚠️ <strong>Sem volta:</strong> Ao clicar, você seleciona a resposta imediatamente. Escolha com cuidado!
-               </p>
-               <p style={{color: '#4b5563'}}>
-                 🤖 <strong>Resultado I.A.:</strong> Ao final, nossa inteligência artificial analisará seu desempenho.
-               </p>
+               <p style={{color: '#4b5563', marginBottom: '10px'}}>✅ <strong>Escolha única:</strong> Apenas uma correta.</p>
+               <p style={{color: '#4b5563', marginBottom: '10px'}}>⚠️ <strong>Sem volta:</strong> Clicou, marcou.</p>
+               <p style={{color: '#4b5563'}}>🤖 <strong>Resultado I.A.:</strong> Análise imediata.</p>
              </div>
-             <button onClick={() => setStep('quiz')} className="btn btn-primary" style={{width: '100%', padding: '15px'}}>
+             <button onClick={() => setStep('quiz')} className="btn btn-primary" style={{width: '100%', padding: '15px', fontSize: '1.2rem'}}>
                Ok, let's begin! 👉
              </button>
           </div>
         )}
 
-        {/* TELA 1: O QUIZ */}
+        {/* TELA QUIZ */}
         {step === 'quiz' && (
           <div>
             <div style={{display: 'flex', justifyContent: 'space-between', marginBottom: '15px', color: '#888', fontSize: '0.8rem'}}>
@@ -284,7 +246,7 @@ const QuizModal = ({ isOpen, onClose }) => {
           </div>
         )}
 
-        {/* TELA 2: CAPTURA */}
+        {/* TELA CAPTURA */}
         {step === 'capture' && (
           <div className="text-center">
             <Lock size={50} color="#9D2235" style={{margin: '0 auto 20px'}} />
@@ -298,7 +260,7 @@ const QuizModal = ({ isOpen, onClose }) => {
           </div>
         )}
 
-        {/* TELA 3: RESULTADO */}
+        {/* TELA RESULTADO */}
         {step === 'result' && (
           <div style={{textAlign: 'center'}}>
             <CheckCircle size={60} color="#10B981" style={{margin: '0 auto 20px'}} />
@@ -313,6 +275,6 @@ const QuizModal = ({ isOpen, onClose }) => {
       </div>
     </div>
   );
-
+};
 
 export default QuizModal;

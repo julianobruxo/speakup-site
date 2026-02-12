@@ -49,7 +49,7 @@ nav {
   display: flex; justify-content: space-between; align-items: center;
   padding: 1rem 0;
 } 
-.logo-img { height: 300px; width: auto; object-fit: fill; }
+.logo-img { height: 120px; width: auto; object-fit: fill; }
 
 /* Hero */
 .hero { 

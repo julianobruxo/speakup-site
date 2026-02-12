@@ -53,48 +53,22 @@ function App() {
               Quem Somos
             </span>
 
-            {/* BOTÃO FACEBOOK (Ícone em Círculo Azul) */}
+            {/* BOTÃO FACEBOOK CIRCULAR */}
             <a 
               href="https://www.facebook.com/speakupdoisirmaos" 
               target="_blank" 
               rel="noopener noreferrer" 
-              style={{ 
-                backgroundColor: '#102f58', 
-                width: '45px', 
-                height: '45px', 
-                borderRadius: '50%', 
-                display: 'flex', 
-                justifyContent: 'center', 
-                alignItems: 'center', 
-                color: 'white', 
-                marginRight: '15px',
-                transition: 'transform 0.2s'
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
-              onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+              style={{ backgroundColor: '#03295a', width: '45px', height: '45px', borderRadius: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white', marginRight: '15px', transition: '0.2s' }}
             >
               <Facebook size={24} fill="white" />
             </a>
 
-            {/* BOTÃO INSTAGRAM (Ícone em Círculo Magenta) */}
+            {/* BOTÃO INSTAGRAM CIRCULAR */}
             <a 
               href="https://www.instagram.com/speakupdoisirmaos/" 
               target="_blank" 
               rel="noopener noreferrer" 
-              style={{ 
-                backgroundColor: '#E4405F', 
-                width: '45px', 
-                height: '45px', 
-                borderRadius: '50%', 
-                display: 'flex', 
-                justifyContent: 'center', 
-                alignItems: 'center', 
-                color: 'white', 
-                marginRight: '25px',
-                transition: 'transform 0.2s'
-              }}
-              onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
-              onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+              style={{ backgroundColor: '#E4405F', width: '45px', height: '45px', borderRadius: '50%', display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white', marginRight: '25px', transition: '0.2s' }}
             >
               <Instagram size={24} />
             </a>
@@ -109,7 +83,7 @@ function App() {
       {/* 2. HERO SECTION */}
       <main className="container hero section">
         <div>
-          <span style={{background: '#E5E7EB', padding: '8px 16px', borderRadius: '50px', fontSize: '0.9rem', fontWeight: '800', color: '#1B2B4A', display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '1.5rem'}}>
+          <span style={{background: '#E5E7EB', padding: '8px 16px', borderRadius: '50px', fontSize: '0.9rem', fontWeight: '800', color: '#1B2B4A', display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '1rem'}}>
             <MapPin size={18} /> Centro de Dois Irmãos - RS
           </span>
           <h1 style={{marginBottom: '1.5rem'}}>Pare de estudar.<br />Comece a <span className="text-red">falar.</span></h1>
@@ -148,7 +122,7 @@ function App() {
             <div className="card text-center" style={{ border: 'none' }}>
               <Home color="#1B2B4A" size={60} style={{margin: '0 auto 20px'}} />
               <h3>Presencial</h3>
-              <p>Estude em nossas salas modernas no centro de Dois Irmãos.</p>
+              <p>Estude no conforto de nossas salas e com nossos Teachers altamente qualificados.</p>
             </div>
             <div className="card text-center" style={{ border: 'none' }}>
               <Monitor color="#8B1E2F" size={60} style={{margin: '0 auto 20px'}} />
@@ -196,28 +170,35 @@ function App() {
             <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', minWidth: '600px' }}>
               <thead>
                 <tr style={{ borderBottom: '2px solid #F3F4F6' }}>
-                  <th style={{ padding: '30px', color: '#1B2B4A', fontSize: '1.1rem' }}>Diferencial</th>
-                  <th style={{ padding: '30px', color: '#8B1E2F', fontSize: '1.1rem' }}>Speak UP</th>
-                  <th style={{ padding: '30px', color: '#94a3b8', fontSize: '1.1rem' }}>Tradicionais</th>
+                  <th style={{ padding: '30px', color: '#1B2B4A' }}>Diferencial</th>
+                  <th style={{ padding: '30px', color: '#8B1E2F' }}>Speak UP</th>
+                  <th style={{ padding: '30px', color: '#94a3b8' }}>Tradicionais</th>
                 </tr>
               </thead>
               <tbody>
                 <tr style={{ borderBottom: '1px solid #F3F4F6' }}><td style={{ padding: '30px' }}>Alunos/Turma</td><td style={{ padding: '30px', fontWeight: '800' }}>Máx 8</td><td style={{ padding: '30px' }}>15 a 20</td></tr>
-                <tr style={{ borderBottom: '1px solid #F3F4F6' }}><td style={{ padding: '30px' }}>Conteúdo</td><td style={{ padding: '30px', fontWeight: '800' }}>Personalizado</td><td style={{ padding: '30px' }}>Livro Rígido</td></tr>
-                <tr><td style={{ padding: '30px' }}>Foco</td><td style={{ padding: '30px', fontWeight: '800' }}>Conversação</td><td style={{ padding: '30px' }}>Gramática</td></tr>
+                <tr style={{ borderBottom: '1px solid #F3F4F6' }}><td style={{ padding: '30px' }}>Conteúdo</td><td style={{ padding: '30px', fontWeight: '800' }}>Situações Reais do dia-a-dia</td><td style={{ padding: '30px' }}>Focado em Grampatica e regras, pouca prática</td></tr>
+                <tr><td style={{ padding: '30px' }}>Foco</td><td style={{ padding: '30px', fontWeight: '800' }}>Conversação e prática</td><td style={{ padding: '30px' }}>Gramática e exercícios apenas</td></tr>
               </tbody>
             </table>
           </div>
         </div>
       </section>
 
-      {/* 7. MAPA */}
+      {/* 7. MAPA (LINK CORRIGIDO) */}
       <section className="section">
         <div className="container text-center">
           <h2 style={{ marginBottom: '1rem' }}>Onde Estamos</h2>
           <p style={{marginBottom: '3rem', fontSize: '1.2rem'}}>Av. 25 de Julho, Centro - Dois Irmãos/RS</p>
           <div style={{ width: '100%', height: '500px', borderRadius: '35px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}>
-            <iframe src="http://googleusercontent.com/maps.google.com/9" width="100%" height="100%" style={{ border: 0 }} loading="lazy"></iframe>
+            <iframe 
+              src="https://maps.google.com/maps?q=Av.%2025%20de%20Julho,%20Dois%20Irmãos%20RS&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+              width="100%" 
+              height="100%" 
+              style={{ border: 0 }} 
+              allowFullScreen="" 
+              loading="lazy"
+            ></iframe>
           </div>
         </div>
       </section>

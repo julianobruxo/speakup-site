@@ -84,7 +84,7 @@ const QuizModal = ({ isOpen, onClose }) => {
   // Inicializa o EmailJS e reseta o teste
   useEffect(() => {
     if (isOpen) {
-      emailjs.init("SUA_PUBLIC_KEY_AQUI"); // <--- CONFIRA SE SUA KEY ESTÁ AQUI
+      emailjs.init("Hry79iMrM6wfAL8ND"); // <--- CONFIRA SE SUA KEY ESTÁ AQUI
       setStep('intro');
       setCurrentQuestion(0);
       setAnswersLog([]);
@@ -151,10 +151,44 @@ const QuizModal = ({ isOpen, onClose }) => {
   };
 
   // Envio do Email
+  // 4. ENVIAR EMAIL (EmailJS) - COM O RELATÓRIO CORRIGIDO
   const finishQuiz = () => {
     setLoading(true);
     const result = calculateRobustLevel(answersLog);
     const rawPhone = userData.phone.replace(/\D/g, ''); 
+
+    // --- [A PARTE QUE FALTAVA] GERA O TEXTO DE ACERTOS E ERROS ---
+    const relatorioTexto = answersLog.map((item, index) => {
+      const status = item.correto ? '✅' : '❌';
+      // Corta perguntas muito longas para caber no email
+      const perguntaResumo = item.pergunta.length > 50 ? item.pergunta.substring(0, 50) + '...' : item.pergunta;
+      
+      return `${index + 1}. [${item.nivel}] ${status} ${perguntaResumo} \n   (Sua resposta: ${item.escolha})`;
+    }).join('\n\n');
+
+    // --- SEUS DADOS (Já preenchi com os que vi na sua imagem) ---
+    const serviceID = "service_placementTest";
+    const templateID = "template_kuvp0q4";
+    const publicKey = "Hry79iMrM6wfAL8ND";
+
+    const templateParams = {
+      nome: userData.name,
+      whatsapp: rawPhone,
+      nivel: result.level,
+      detalhes: result.stats,
+      relatorio_completo: relatorioTexto // <--- O INGREDIENTE SECRETO
+    };
+
+    emailjs.send(serviceID, templateID, templateParams, publicKey)
+      .then(() => {
+        setStep('result');
+        setLoading(false);
+      }, (err) => {
+        console.error('Erro envio:', err);
+        setStep('result'); 
+        setLoading(false);
+      });
+  }; 
     
     // --- SUBSTITUA PELOS SEUS DADOS ---
     const serviceID = "service_placementTest"; 
@@ -279,6 +313,6 @@ const QuizModal = ({ isOpen, onClose }) => {
       </div>
     </div>
   );
-};
+
 
 export default QuizModal;
